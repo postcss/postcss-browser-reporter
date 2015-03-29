@@ -11,17 +11,17 @@ var warninger2 = function (css, result) {
 };
 
 var before = function (content) {
-                 return 'a{ }\n' +
-                        'body:before{\n' +
-                        '    background: red;\n' +
-                        '    display: block;\n' +
-                        '    padding: 20px 30px;\n' +
-                        '    color: white;\n' +
-                        '    font-size: 16px;\n' +
-                        '    white-space: pre;\n' +
-                        '    content: "Here is some warning' + content + '"\n' +
-                        '}';
-             };
+    return 'a{ }\n' +
+           'body:before{\n' +
+           '    background: red;\n' +
+           '    display: block;\n' +
+           '    padding: 20px 30px;\n' +
+           '    color: white;\n' +
+           '    font-size: 16px;\n' +
+           '    white-space: pre;\n' +
+           '    content: "Here is some warning' + content + '"\n' +
+           '}';
+};
 
 var test = function (input, output, plugins) {
     expect(postcss(plugins).process(input).css).to.eql(output);
