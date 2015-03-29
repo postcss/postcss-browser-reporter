@@ -13,11 +13,11 @@ var warninger2 = function (css, result) {
 var before = function (content) {
     return 'a{ }\n' +
            'body:before{\n' +
-           '    background: red;\n' +
            '    display: block;\n' +
            '    padding: 20px 30px;\n' +
-           '    color: white;\n' +
+           '    background: red;\n' +
            '    font-size: 16px;\n' +
+           '    color: white;\n' +
            '    white-space: pre;\n' +
            '    content: "Here is some warning' + content + '"\n' +
            '}';
