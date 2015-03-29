@@ -7,7 +7,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url":  "https://github.com/gazay/postcss-messages.git"
+        "url":  "https://github.com/postcss/postcss-messages.git"
     },
     "dependencies": {
         "postcss": "git://github.com/postcss/postcss.git#v4.1"
