@@ -10,7 +10,7 @@
         "url":  "https://github.com/gazay/postcss-messages.git"
     },
     "dependencies": {
-        "postcss": "^4.0.3"
+        "postcss": "git://github.com/postcss/postcss.git#v4.1"
     },
     "devDependencies": {
         "jshint-stylish": "1.0.0",
