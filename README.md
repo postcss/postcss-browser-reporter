@@ -2,7 +2,7 @@
 
 [PostCSS] plugin to display warning messages right in your browser.
 
-If in some `other-plugin` before was thrown warning, it will append following styles:
+If a plugin before this one is throwning a warning, it will append the following styles:
 
 ```css
 body:before{
@@ -12,13 +12,13 @@ body:before{
     color: white;
     font-size: 16px;
     white-space: pre;
-    content: "other-plugin:a.css:10:4: Here is some warning from other plugin"
+    content: "whatever-plugin:a.css:10:4: Here is a warning !"
 }
 ```
 
 ## Usage
 
-Put this plugin after all plugins you want to receive warnings:
+Put this plugin after all plugins if you want to cover all possible warnings:
 
 ```js
 postcss([ require('other-plugin'),
