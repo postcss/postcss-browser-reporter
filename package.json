@@ -1,6 +1,6 @@
 {
     "name": "postcss-messages",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "PostCSS plugin to display warning messages right in your browser",
     "keywords": ["postcss", "css", "postcssplugin", "warnings"],
     "author": "Alexey Gaziev <alex.gaziev@gmail.com>",
@@ -10,7 +10,7 @@
         "url":  "https://github.com/postcss/postcss-messages.git"
     },
     "dependencies": {
-        "postcss": "git://github.com/postcss/postcss.git#v4.1"
+        "postcss": "~4.1.0"
     },
     "devDependencies": {
         "jshint-stylish": "1.0.0",
