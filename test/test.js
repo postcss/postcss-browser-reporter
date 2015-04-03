@@ -10,16 +10,16 @@ var warninger2 = function (css, result) {
     result.warn("Here is another warning");
 };
 
-var before = function (content) {
+var before = function (opts) {
     return 'a{ }\n' +
-           'body:before{\n' +
+           ( opts && opts.selector ? opts.selector : 'body:before' ) + '{\n' +
            '    display: block;\n' +
            '    padding: 20px 30px;\n' +
            '    background: red;\n' +
            '    font-size: 16px;\n' +
            '    color: white;\n' +
            '    white-space: pre;\n' +
-           '    content: "Here is some warning' + content + '"\n' +
+           '    content: "Here is some warning' + ( opts && opts.content ? opts.content : '' ) + '"\n' +
            '}';
 };
 
@@ -30,7 +30,7 @@ var test = function (input, output, plugins) {
 describe('postcss-messages', function () {
 
     it('displays warning before body', function () {
-        test('a{ }', before(''), [warninger, plugin()]);
+        test('a{ }', before(), [warninger, plugin()]);
     });
 
     it('not displays warning before body if disabled', function () {
@@ -38,11 +38,15 @@ describe('postcss-messages', function () {
     });
 
     it('displays two warnings from two plugins on new lines', function () {
-        test('a{ }', before('\\00000aHere is another warning'), [warninger, warninger2, plugin({})]);
+        test('a{ }', before({ content: '\\00000aHere is another warning' }), [warninger, warninger2, plugin({})]);
     });
 
     it('displays only warnings from plugins before', function () {
-        test('a{ }', before(''), [warninger, plugin({}), warninger2]);
+        test('a{ }', before(), [warninger, plugin({}), warninger2]);
+    });
+
+    it('displays warning before html', function () {
+        test('a{ }', before({ selector: 'html:before' }), [warninger, plugin({ selector: 'html:before' })]);
     });
 
 });
