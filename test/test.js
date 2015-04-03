@@ -12,7 +12,7 @@ var warninger2 = function (css, result) {
 
 var before = function (opts) {
     return 'a{ }\n' +
-           ( opts && opts.selector ? opts.selector : 'body:before' ) + '{\n' +
+           ( opts && opts.selector ? opts.selector : 'html:before' ) + '{\n' +
            '    display: block;\n' +
            '    padding: 20px 30px;\n' +
            '    background: red;\n' +

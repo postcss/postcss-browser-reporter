@@ -24,7 +24,7 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
     };
 
     return function (css, result) {
-        css.append({ selector: (opts && opts.selector) ? opts.selector : 'body:before' });
+        css.append({ selector: (opts && opts.selector) ? opts.selector : 'html:before' });
         for ( var style in defaultStyles ) {
           if ( defaultStyles.hasOwnProperty(style) ) {
             css.last.append({ prop: style, value: defaultStyles[style] });
