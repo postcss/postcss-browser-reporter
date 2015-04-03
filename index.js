@@ -37,7 +37,18 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
     var styles = ( opts && opts.styles ? opts.styles : defaultStyles );
 
     return function (css, result) {
-        css.append({ selector: (opts && opts.selector) ? opts.selector : 'html:before' });
+        var selector = 'html::before';
+        if ( opts && opts.selector ) {
+            selector = opts.selector;
+        } else {
+            css.eachRule(function (rule) {
+                if ( rule.selector == 'html::before' ||  rule.selector == 'html::before' ) {
+                    selector = 'html::after';
+                }
+            });
+        }
+
+        css.append({ selector: selector });
         for ( var style in styles ) {
           if ( styles.hasOwnProperty(style) ) {
             css.last.append({ prop: style, value: styles[style] });

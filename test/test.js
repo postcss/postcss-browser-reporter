@@ -11,14 +11,14 @@ var warninger2 = function (css, result) {
 };
 
 var beforeCustom = 'a{ }\n' +
-           'html:before{\n' +
+           'html::before{\n' +
            '    text-align: center;\n' +
            '    content: "Here is some warning"\n' +
            '}';
 
 var before = function (opts) {
     return 'a{ }\n' +
-           ( opts && opts.selector ? opts.selector : 'html:before' ) + '{\n' +
+           ( opts && opts.selector ? opts.selector : 'html::before' ) + '{\n' +
            '    display: block;\n' +
            '    z-index: 1000;\n' +
            '    position: fixed;\n' +
