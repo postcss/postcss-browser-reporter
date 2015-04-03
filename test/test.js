@@ -17,8 +17,9 @@ var before = function (opts) {
            '    padding: 20px 30px;\n' +
            '    background: red;\n' +
            '    font-size: 16px;\n' +
-           '    color: white;\n' +
+           '    color: ' + ( opts && opts.changedColor ? opts.changedColor : 'white' ) + ';\n' +
            '    white-space: pre;\n' +
+           ( opts && opts.addedStyle ? ('    ' + opts.addedStyle + ';\n') : '') +
            '    content: "Here is some warning' + ( opts && opts.content ? opts.content : '' ) + '"\n' +
            '}';
 };
@@ -45,8 +46,16 @@ describe('postcss-messages', function () {
         test('a{ }', before(), [warninger, plugin({}), warninger2]);
     });
 
-    it('displays warning before html', function () {
-        test('a{ }', before({ selector: 'html:before' }), [warninger, plugin({ selector: 'html:before' })]);
+    it('displays warning before body', function () {
+        test('a{ }', before({ selector: 'body:before' }), [warninger, plugin({ selector: 'body:before' })]);
+    });
+
+    it('displays warning with custom font color', function () {
+        test('a{ }', before({ changedColor: 'gray' }), [warninger, plugin({ styles: { color: 'gray' } })]);
+    });
+
+    it('displays warning with custom style property ', function () {
+        test('a{ }', before({ addedStyle: 'text-align: center' }), [warninger, plugin({ styles: { 'text-align': 'center' } })]);
     });
 
 });
