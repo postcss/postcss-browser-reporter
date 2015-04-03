@@ -7,6 +7,7 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
 
     var defaultStyles = {
       'display': 'block',
+      'z-index': '1000',
 
       /* not a problem for old browsers, box will still be on top of body */
       'position': 'fixed',

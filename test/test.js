@@ -20,6 +20,7 @@ var before = function (opts) {
     return 'a{ }\n' +
            ( opts && opts.selector ? opts.selector : 'html:before' ) + '{\n' +
            '    display: block;\n' +
+           '    z-index: 1000;\n' +
            '    position: fixed;\n' +
            '    top: 0;\n' +
            '    left: 0;\n' +
