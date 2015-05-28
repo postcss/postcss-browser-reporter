@@ -58,7 +58,10 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
         var content = result.warnings().map(function (message) {
             return message.toString().replace(/"/g, '\\"');
         }).join('\\00000a');
+        
+        if (content) {
+           css.last.append({ prop: 'content', value: '"' + content + '"' });    
+        }
 
-        css.last.append({ prop: 'content', value: '"' + content + '"' });
     };
 });
