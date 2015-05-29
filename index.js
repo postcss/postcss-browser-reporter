@@ -42,7 +42,7 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
             selector = opts.selector;
         } else {
             css.eachRule(function (rule) {
-                if ( rule.selector == 'html::before' ||  rule.selector == 'html::before' ) {
+                if ( rule.selector == 'html::before' ||  rule.selector == 'html:before' ) {
                     selector = 'html::after';
                 }
             });

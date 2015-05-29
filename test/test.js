@@ -17,8 +17,9 @@ var beforeCustom = 'a{ }\n' +
            '}';
 
 var before = function (opts) {
-    return 'a{ }\n' +
-           ( opts && opts.selector ? opts.selector : 'html::before' ) + '{\n' +
+    opts = opts || {};
+    return ( opts.code || 'a{ }' ) + '\n' +
+           ( opts.selector || 'html::before' ) + '{\n' +
            '    display: block;\n' +
            '    z-index: 1000;\n' +
            '    position: fixed;\n' +
@@ -45,8 +46,15 @@ var test = function (input, output, plugins) {
 
 describe('postcss-messages', function () {
 
-    it('displays warning before body', function () {
+    it('displays warning before html', function () {
         test('a{ }', before(), [warninger, plugin()]);
+    });
+
+    it('displays warning after html if needed', function () {
+        var code = 'html::before{ }';
+        test(code, before({ selector: 'html::after', code: code }), [warninger, plugin()]);
+        code = 'html:before{ }';
+        test(code, before({ selector: 'html::after', code: code }), [warninger, plugin()]);
     });
 
     it('not displays warning before body if disabled', function () {
