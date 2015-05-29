@@ -19,7 +19,7 @@ postcss([
 
 ### Options
 
-#### `selector` (`{String}`, default: `html:before`)
+#### `selector` (`{String}`, default: `html::before`)
 
 You can override selector that will be used to display messages:
 
