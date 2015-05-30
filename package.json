@@ -1,6 +1,6 @@
 {
     "name": "postcss-messages",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "PostCSS plugin to display warning messages right in your browser",
     "keywords": ["postcss", "css", "postcss-plugin", "warnings"],
     "author": "Alexey Gaziev <alex.gaziev@gmail.com>",
