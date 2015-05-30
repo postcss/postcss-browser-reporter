@@ -57,8 +57,12 @@ describe('postcss-messages', function () {
         test(code, before({ selector: 'html::after', code: code }), [warninger, plugin()]);
     });
 
-    it('not displays warning before body if disabled', function () {
+    it('not displays warning before html if disabled', function () {
         test('a{ }', 'a{ }', [warninger, plugin({ disabled: true })]);
+    });
+
+    it('not displays warning before html if no warnings', function () {
+        test('a{ }', 'a{ }', [plugin()]);
     });
 
     it('displays two warnings from two plugins on new lines', function () {

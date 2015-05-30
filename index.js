@@ -37,6 +37,11 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
     var styles = ( opts && opts.styles ? opts.styles : defaultStyles );
 
     return function (css, result) {
+        var warnings = result.warnings();
+        if (warnings.length === 0) {
+            return;
+        }
+
         var selector = 'html::before';
         if ( opts && opts.selector ) {
             selector = opts.selector;
@@ -55,7 +60,7 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
           }
         }
 
-        var content = result.warnings().map(function (message) {
+        var content = warnings.map(function (message) {
             return message.toString().replace(/"/g, '\\"');
         }).join('\\00000a');
 
