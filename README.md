@@ -32,7 +32,7 @@ postcss([
 ])
 ```
 
-#### `styles` (`{Object}`, default: opininated styles)
+#### `styles` (`{Object}`, default: opinionated styles)
 
 You can override default styles applied to the selector:
 
