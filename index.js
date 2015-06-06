@@ -29,7 +29,7 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
       'box-shadow': 'inset 0 1px 0 #EB8A93, 0 0 .3em rgba(0,0,0, .5)',
 
       /* nice font */
-      'white-space': 'pre',
+      'white-space': 'pre-wrap',
       'font-family': 'Menlo, Monaco, monospace',
       'text-shadow': '0 1px #A82734'
     };
