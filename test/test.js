@@ -9,6 +9,9 @@ var warninger = function (css, result) {
 var warninger2 = function (css, result) {
     result.warn("Here is another warning");
 };
+var warninger3 = function (css, result) {
+    result.warn("Warning with details", { plugin: 'bar', node: { source: { start: { line: 1, column: 99 } } } });
+};
 
 var beforeCustom = 'a{ }\n' +
            'html::before{\n' +
@@ -36,7 +39,7 @@ var before = function (opts) {
            '    white-space: pre-wrap;\n' +
            '    font-family: Menlo, Monaco, monospace;\n' +
            '    text-shadow: 0 1px #A82734;\n' +
-           '    content: "Here is some warning' + ( opts && opts.content ? opts.content : '' ) + '"\n' +
+           '    content: ' + ( opts && opts.content ? opts.content : '"Here is some warning"' ) + '\n' +
            '}';
 };
 
@@ -66,11 +69,15 @@ describe('postcss-messages', function () {
     });
 
     it('displays two warnings from two plugins on new lines', function () {
-        test('a{ }', before({ content: '\\00000aHere is another warning' }), [warninger, warninger2, plugin({})]);
+        test('a{ }', before({ content: '"Here is some warning\\00000aHere is another warning"' }), [warninger, warninger2, plugin({})]);
     });
 
     it('displays only warnings from plugins before', function () {
         test('a{ }', before(), [warninger, plugin({}), warninger2]);
+    });
+
+    it('displays warnings with details', function () {
+        test('a{ }', before({ content: '"1:99\tWarning with details [bar]"' }), [warninger3, plugin({}), warninger2]);
     });
 
     it('displays warning before body', function () {

@@ -61,9 +61,22 @@ module.exports = postcss.plugin('postcss-messages', function (opts) {
         }
 
         var content = warnings.map(function (message) {
-            return message.toString().replace(/"/g, '\\"');
+            return warningToString(message).replace(/"/g, '\\"');
         }).join('\\00000a');
 
         css.last.append({ prop: 'content', value: '"' + content + '"' });
     };
+
+    function warningToString(warning) {
+        var str = '';
+        if (warning.node && warning.node.type !== 'root') {
+          str += warning.node.source.start.line + ':' +
+                 warning.node.source.start.column + '\t';
+        }
+        str += warning.text;
+        if (warning.plugin) {
+          str += ' [' + warning.plugin + ']';
+        }
+        return str;
+    }
 });
