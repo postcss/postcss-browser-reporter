@@ -48,7 +48,7 @@ var test = function (input, output, plugins) {
     expect(postcss(plugins).process(input).css).to.eql(output);
 };
 
-describe('postcss-messages', function () {
+describe('postcss-browser-reporter', function () {
 
     it('displays warning before html', function () {
         test('a{ }', before(), [warninger, plugin()]);

@@ -1,10 +1,10 @@
-# PostCSS Messages [![Build Status](https://travis-ci.org/postcss/postcss-messages.svg)](https://travis-ci.org/postcss/postcss-messages)
+# PostCSS Browser Reporter [![Build Status](https://travis-ci.org/postcss/postcss-browser-reporter)](https://travis-ci.org/postcss/postcss-browser-reporter)
 
-> [PostCSS] plugin to display warning messages right in your browser.
+> [PostCSS] plugin to report warning messages right in your browser.
 
 If a plugin before this one is throwning a warning, this plugin will append warning messages to `html:before`.
 
-![Postcss-messages – warnings from other postcss plugins in your browser](http://postcss.github.io/postcss-messages/screenshot.png)
+![Postcss-browser-reporter – warnings from other postcss plugins in your browser](http://postcss.github.io/postcss-browser-reporter/screenshot.png)
 
 ## Usage
 
@@ -13,7 +13,7 @@ Put this plugin after all plugins if you want to cover all possible warnings:
 ```js
 postcss([
   require('other-plugin'),
-  require('postcss-messages')
+  require('postcss-browser-reporter')
 ])
 ```
 
@@ -24,7 +24,7 @@ postcss([
 You can override selector that will be used to display messages:
 
 ```js
-var messages = require('postcss-messages')
+var messages = require('postcss-browser-reporter')
 postcss([
   messages({
     selector: 'body:before'
@@ -37,7 +37,7 @@ postcss([
 You can override default styles applied to the selector:
 
 ```js
-var messages = require('postcss-messages')
+var messages = require('postcss-browser-reporter')
 postcss([
   messages({
     styles: {

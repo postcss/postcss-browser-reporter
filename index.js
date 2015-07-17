@@ -1,6 +1,6 @@
 var postcss = require('postcss');
 
-module.exports = postcss.plugin('postcss-messages', function (opts) {
+module.exports = postcss.plugin('postcss-browser-reporter', function (opts) {
     if ( opts && opts.disabled === true ) {
         return function () { };
     }
