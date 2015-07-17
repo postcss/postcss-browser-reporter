@@ -1,4 +1,4 @@
-# PostCSS Browser Reporter [![Build Status](https://travis-ci.org/postcss/postcss-browser-reporter)](https://travis-ci.org/postcss/postcss-browser-reporter)
+# PostCSS Browser Reporter [![Build Status](https://travis-ci.org/postcss/postcss-browser-reporter.svg)](https://travis-ci.org/postcss/postcss-browser-reporter)
 
 > [PostCSS] plugin to report warning messages right in your browser.
 
