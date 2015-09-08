@@ -10,7 +10,7 @@ var warninger2 = function (css, result) {
     result.warn("Here is another warning");
 };
 var warninger3 = function (css, result) {
-    result.warn("Warning with details", { plugin: 'bar', node: { source: { start: { line: 1, column: 99 } } } });
+    result.warn("Warning with details", { plugin: 'bar', node: postcss.rule({ source: { start: { line: 1, column: 99 } } } ) });
 };
 
 var beforeCustom = 'a{ }\n' +
