@@ -47,7 +47,7 @@ module.exports = postcss.plugin('postcss-browser-reporter', function (opts) {
         if ( opts && opts.selector ) {
             selector = opts.selector;
         } else {
-            css.eachRule(function (rule) {
+            css.walkRules(function (rule) {
                 if ( rule.selector == 'html::before' ||  rule.selector == 'html:before' ) {
                     selector = 'html::after';
                 }
