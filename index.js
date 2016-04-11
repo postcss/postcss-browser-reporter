@@ -63,7 +63,11 @@ module.exports = postcss.plugin('postcss-browser-reporter', function (opts) {
 
         var content = warnings.map(function (message) {
             return warningToString(message).replace(/"/g, '\\"');
-        }).join('\\00000a');
+        });
+
+        content.unshift(require('path').relative(process.cwd(), css.source.input.file).replace(/\\/g, '/'));
+
+        content = content.join('\\00000a');
 
         css.last.append({ prop: 'content', value: '"' + content + '"' });
     };
