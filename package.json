@@ -1,6 +1,6 @@
 {
   "name": "postcss-browser-reporter",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "PostCSS plugin to report warning messages right in your browser",
   "keywords": [
     "postcss",
