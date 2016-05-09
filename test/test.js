@@ -44,8 +44,8 @@ var before = function (opts) {
            '}';
 };
 
-var test = function (input, output, plugins) {
-    expect(postcss(plugins).process(input).css).to.eql(output);
+var test = function (input, output, plugins, opts) {
+    expect(postcss(plugins).process(input, opts).css).to.eql(output);
 };
 
 describe('postcss-browser-reporter', function () {
@@ -87,6 +87,15 @@ describe('postcss-browser-reporter', function () {
 
     it('displays warning with custom styles ', function () {
         test('a{ }', beforeCustom, [warninger, plugin({ styles: { 'text-align': 'center' } })]);
+    });
+
+    it('displays warning with file path', function() {
+        var path = 'test/test.css';
+        test('a{ }', before({
+            content: '"test/test.css\\00000aHere is some warning"'
+        }), [warninger, plugin()], {
+            from: require('path').join(process.cwd(), path)
+        });
     });
 
 });
