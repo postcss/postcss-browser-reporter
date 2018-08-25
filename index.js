@@ -35,7 +35,11 @@ module.exports = postcss.plugin('postcss-browser-reporter', function (opts) {
       'text-shadow': '0 1px #A82734'
     };
 
-    var styles = ( opts && opts.styles ? opts.styles : defaultStyles );
+    var styles = ( opts && opts.styles 
+                      ? (Object.assign) 
+                          ? Object.assign(defaultStyles,opts.styles)
+                          : opts.styles
+                      : defaultStyles );
 
     return function (css, result) {
         var warnings = result.warnings();
