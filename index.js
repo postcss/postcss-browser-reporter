@@ -36,7 +36,7 @@ module.exports = postcss.plugin('postcss-browser-reporter', function (opts) {
     };
 
     var styles = ( opts && opts.styles 
-                      ? (Object.assign) 
+                      ? ( Object.assign ) 
                           ? Object.assign(defaultStyles,opts.styles)
                           : opts.styles
                       : defaultStyles );
