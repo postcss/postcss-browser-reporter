@@ -1,7 +1,7 @@
 var postcss = require('postcss');
 var expect  = require('chai').expect;
 
-var plugin = require('../');
+var plugin = require('./');
 
 var warninger = function (css, result) {
     result.warn("Here is some warning");

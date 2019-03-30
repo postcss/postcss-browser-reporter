@@ -10,22 +10,15 @@
   ],
   "author": "Alexey Gaziev <alex.gaziev@gmail.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/postcss/postcss-browser-reporter.git"
-  },
+  "repository": "postcss/postcss-browser-reporter",
   "dependencies": {
-    "postcss": "^6.0.3"
+    "postcss": "^7.0.14"
   },
   "devDependencies": {
-    "jshint-stylish": "1.0.0",
-    "gulp-jshint": "1.9.2",
-    "gulp-mocha": "2.0.0",
-    "mocha": "2.1.0",
-    "chai": "1.10.0",
-    "gulp": "3.8.11"
+    "chai": "4.2.0",
+    "mocha": "6.0.2"
   },
   "scripts": {
-    "test": "gulp"
+    "test": "mocha *.test.js"
   }
 }
