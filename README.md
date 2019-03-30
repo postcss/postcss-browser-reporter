@@ -2,7 +2,7 @@
 
 > [PostCSS] plugin to report warning messages right in your browser.
 
-If a plugin before this one is throwning a warning, this plugin will append warning messages to `html:before`.
+If a plugin before this one is throwing a warning, this plugin will append warning messages to `html:before`.
 
 ![Postcss-browser-reporter – warnings from other postcss plugins in your browser](http://postcss.github.io/postcss-browser-reporter/screenshot.png)
 
