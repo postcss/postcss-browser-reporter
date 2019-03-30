@@ -1,3 +1,7 @@
+# 0.6.0 - 2019-03-30
+
+  * Use PostCSS 7.
+
 # 0.3.0 - 2015-07-17
 
   * Rename postcss-messages -> postcss-browser-reporter
