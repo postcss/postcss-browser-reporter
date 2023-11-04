@@ -1,7 +1,7 @@
-var postcss = require('postcss');
+const postcss = require('postcss');
 
 function warningToString(warning) {
-  var str = '';
+  let str = '';
   if (warning.node && warning.node.type !== 'root') {
     str += warning.node.source.start.line + ':' +
       warning.node.source.start.column + '\t';
@@ -14,11 +14,11 @@ function warningToString(warning) {
 }
 
 const plugin = (opts = {}) => {
-  if (opts && opts.disabled === true) {
+  if (opts?.disabled === true) {
     return function () { };
   }
 
-  var defaultStyles = {
+  const defaultStyles = {
     'display': 'block',
     'z-index': '1000',
 
@@ -48,18 +48,18 @@ const plugin = (opts = {}) => {
     'text-shadow': '0 1px #A82734'
   };
 
-  var styles = (opts && opts.styles ? opts.styles : defaultStyles);
+  const styles = (opts?.styles ?? defaultStyles);
 
   return {
     postcssPlugin: 'postcss-browser-reporter',
     Once(root, { result }) {
-      var warnings = result.warnings();
+      const warnings = result.warnings();
       if (warnings.length === 0) {
         return;
       }
 
-      var selector = 'html::before';
-      if (opts && opts.selector) {
+      let selector = 'html::before';
+      if (opts?.selector) {
         selector = opts.selector;
       } else {
         root.walkRules(function (rule) {
@@ -70,13 +70,13 @@ const plugin = (opts = {}) => {
       }
 
       root.append({ selector: selector });
-      for (var style in styles) {
+      for (let style in styles) {
         if (styles.hasOwnProperty(style)) {
           root.last.append({ prop: style, value: styles[style] });
         }
       }
 
-      var content = warnings.map(function (message) {
+      let content = warnings.map(function (message) {
         return warningToString(message).replace(/"/g, '\\"');
       });
 
@@ -86,7 +86,7 @@ const plugin = (opts = {}) => {
 
       content = content.join('\\00000a');
 
-      root.last.append({ prop: 'content', value: '"' + content + '"' });
+      root.last.append({ prop: 'content', value: `"${content}"` });
     }
   }
 }
