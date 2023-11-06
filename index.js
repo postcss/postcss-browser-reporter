@@ -1,5 +1,3 @@
-const postcss = require('postcss');
-
 function warningToString(warning) {
   let str = '';
   if (warning.node && warning.node.type !== 'root') {
