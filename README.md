@@ -4,7 +4,7 @@
 
 If a plugin before this one is throwing a warning, this plugin will append warning messages to `html:before`.
 
-![Postcss-browser-reporter – warnings from other postcss plugins in your browser](http://postcss.github.io/postcss-browser-reporter/screenshot.png)
+![PostCSS Browser Reporter example](./screenshot.png)
 
 
 ## Usage
