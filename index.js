@@ -1,17 +1,22 @@
+let { relative } = require('node:path')
+
 function warningToString(warning) {
-  let str = '';
+  let str = ''
   if (warning.node && warning.node.type !== 'root') {
-    str += warning.node.source.start.line + ':' +
-      warning.node.source.start.column + '\t';
+    str +=
+      warning.node.source.start.line +
+      ':' +
+      warning.node.source.start.column +
+      '\t'
   }
-  str += warning.text;
+  str += warning.text
   if (warning.plugin) {
-    str += ' [' + warning.plugin + ']';
+    str += ' [' + warning.plugin + ']'
   }
-  return str;
+  return str
 }
 
-const defaultStyles = {
+const DEFAULT_STYLES = {
   'display': 'block',
   'z-index': '1000',
 
@@ -22,7 +27,7 @@ const defaultStyles = {
   'right': '0',
 
   'font-size': '.9em',
-  'padding': '1.5em 1em 1.5em 4.5em', /* padding + background image padding */
+  'padding': '1.5em 1em 1.5em 4.5em' /* padding + background image padding */,
 
   /* background */
   'color': 'white',
@@ -39,56 +44,59 @@ const defaultStyles = {
   'white-space': 'pre-wrap',
   'font-family': 'Menlo, Monaco, monospace',
   'text-shadow': '0 1px #A82734'
-};
+}
 
 const plugin = (opts = {}) => {
-  if (opts?.disabled === true) {
-    return function () { };
+  if (opts.disabled) {
+    return function () {}
   }
 
-  const styles = (opts?.styles ?? defaultStyles);
+  let styles = opts.styles ?? DEFAULT_STYLES
 
   return {
-    postcssPlugin: 'postcss-browser-reporter',
     OnceExit(root, { result }) {
-      const warnings = result.warnings();
+      let warnings = result.warnings()
       if (warnings.length === 0) {
-        return;
+        return
       }
 
-      let selector = 'html::before';
+      let selector = 'html::before'
       if (opts?.selector) {
-        selector = opts.selector;
+        selector = opts.selector
       } else {
-        root.walkRules(function (rule) {
-          if (rule.selector == 'html::before' || rule.selector == 'html:before') {
-            selector = 'html::after';
+        root.walkRules(rule => {
+          if (
+            rule.selector === 'html::before' ||
+            rule.selector === 'html:before'
+          ) {
+            selector = 'html::after'
           }
-        });
+        })
       }
 
-      root.append({ selector: selector });
+      root.append({ selector })
       for (let style in styles) {
-        if (styles.hasOwnProperty(style)) {
-          root.last.append({ prop: style, value: styles[style] });
-        }
+        root.last.append({ prop: style, value: styles[style] })
       }
 
-      let content = warnings.map(function (message) {
-        return warningToString(message).replace(/"/g, '\\"');
-      });
+      let content = warnings.map(message => {
+        return warningToString(message).replace(/"/g, '\\"')
+      })
 
       if (root.source.input.file) {
-        content.unshift(require('path').relative(process.cwd(), root.source.input.file).replace(/\\/g, '/'));
+        content.unshift(
+          relative(process.cwd(), root.source.input.file).replace(/\\/g, '/')
+        )
       }
 
-      content = content.join('\\00000a');
+      content = content.join('\\00000a')
 
-      root.last.append({ prop: 'content', value: `"${content}"` });
-    }
+      root.last.append({ prop: 'content', value: `"${content}"` })
+    },
+    postcssPlugin: 'postcss-browser-reporter'
   }
 }
 
-plugin.postcss = true;
+plugin.postcss = true
 
-module.exports = plugin;
+module.exports = plugin

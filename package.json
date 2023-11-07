@@ -11,16 +11,64 @@
   "author": "Alexey Gaziev <alex.gaziev@gmail.com>",
   "license": "MIT",
   "repository": "postcss/postcss-browser-reporter",
-  "devDependencies": {
-    "chai": "4.2.0",
-    "clean-publish": "^1.1.0",
-    "mocha": "6.0.2",
-    "postcss": "^8.4.31"
+  "engines": {
+    "node": ">=18.0"
+  },
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/postcss/"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/ai"
+    }
+  ],
+  "scripts": {
+    "unit": "node --test index.test.js",
+    "test:coverage": "c8 pnpm unit",
+    "test:lint": "eslint .",
+    "test": "pnpm run /^test:/"
   },
   "peerDependencies": {
+    "postcss": "^8.2.14"
+  },
+  "devDependencies": {
+    "@logux/eslint-config": "^52.0.1",
+    "c8": "^8.0.1",
+    "clean-publish": "^4.2.0",
+    "eslint": "^8.51.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.1.0",
+    "eslint-plugin-node-import": "^1.0.4",
+    "eslint-plugin-perfectionist": "^2.1.0",
+    "eslint-plugin-prefer-let": "^3.0.1",
+    "eslint-plugin-promise": "^6.1.1",
     "postcss": "^8.4.31"
   },
-  "scripts": {
-    "test": "mocha *.test.js"
+  "prettier": {
+    "arrowParens": "avoid",
+    "jsxSingleQuote": false,
+    "quoteProps": "consistent",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
+  "eslintConfig": {
+    "extends": "@logux/eslint-config",
+    "rules": {
+      "perfectionist/sort-objects": "off"
+    }
+  },
+  "c8": {
+    "exclude": [
+      "**/*.test.*"
+    ],
+    "lines": 100,
+    "check-coverage": true
+  },
+  "clean-publish": {
+    "cleanDocs": true
   }
 }
