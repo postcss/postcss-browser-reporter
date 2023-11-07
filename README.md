@@ -6,6 +6,8 @@ If a plugin before this one is throwing a warning, this plugin will append warni
 
 ![PostCSS Browser Reporter example](./screenshot.png)
 
+[PostCSS]: https://github.com/postcss/postcss
+
 
 ## Usage
 
