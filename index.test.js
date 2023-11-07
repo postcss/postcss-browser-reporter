@@ -73,10 +73,6 @@ describe('postcss-browser-reporter', function () {
         test('a{ }', before({ content: '"Here is some warning\\00000aHere is another warning"' }), [warninger, warninger2, plugin({})]);
     });
 
-    it('displays only warnings from plugins before', function () {
-        test('a{ }', before(), [warninger, plugin({}), warninger2]);
-    });
-
     it('displays warnings with details', function () {
         test('a{ }', before({ content: '"1:99\tWarning with details [bar]"' }), [warninger3, plugin({}), warninger2]);
     });
