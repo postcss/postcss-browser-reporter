@@ -74,7 +74,7 @@ describe('postcss-browser-reporter', function () {
     });
 
     it('displays warnings with details', function () {
-        test('a{ }', before({ content: '"1:99\tWarning with details [bar]"' }), [warninger3, plugin({}), warninger2]);
+        test('a{ }', before({ content: '"1:99\tWarning with details [bar]\\00000aHere is another warning"' }), [warninger3, plugin({}), warninger2]);
     });
 
     it('displays warning before body', function () {

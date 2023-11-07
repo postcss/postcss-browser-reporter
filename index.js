@@ -50,7 +50,7 @@ const plugin = (opts = {}) => {
 
   return {
     postcssPlugin: 'postcss-browser-reporter',
-    Once(root, { result }) {
+    OnceExit(root, { result }) {
       const warnings = result.warnings();
       if (warnings.length === 0) {
         return;
