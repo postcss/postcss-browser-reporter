@@ -38,7 +38,7 @@ module.exports = {
 
 ## Options
 
-### `selector` (`{String}`, default: `html::before`)
+### `selector`
 
 You can override selector that will be used to display messages:
 
@@ -48,7 +48,10 @@ You can override selector that will be used to display messages:
   })
 ```
 
-### `styles` (`{Object}`, default: opinionated styles)
+Type: `String`. Default: `html::before`.
+
+
+### `styles`
 
 You can override default styles applied to the selector:
 
@@ -60,3 +63,5 @@ You can override default styles applied to the selector:
     }
   })
 ```
+
+Type: `Object`. Default: opinionated styles.
